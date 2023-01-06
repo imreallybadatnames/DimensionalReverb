@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "reverb",
+  "version": "${version}",
+  "name": "Reverb",
+  "description": "Library to modify sound",
+  "authors": [
+    "LudoCrypt",
+    "DaFuqs"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/reverb/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "de.dafuqs.reverb.Reverb"
+    ]
+  },
+  "mixins": [
+    "reverb.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.12",
+    "fabric": "*",
+    "minecraft": ">=1.19.2"
+  },
+  "accessWidener" : "reverb.accesswidener"
+}
