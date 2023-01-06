@@ -22,7 +22,7 @@ public class MinecraftClientMixin {
     public ClientWorld world;
 
     @Inject(method = "getMusicType", at = @At("HEAD"), cancellable = true)
-    private void limlib$getMusicType(CallbackInfoReturnable<MusicSound> ci) {
+    private void reverb$getMusicType(CallbackInfoReturnable<MusicSound> ci) {
         if (this.player != null) {
             Optional<SoundEffects> soundEffects = Reverb.SOUND_EFFECTS.getOrEmpty(world.getRegistryKey().getValue());
             if (soundEffects.isPresent()) {

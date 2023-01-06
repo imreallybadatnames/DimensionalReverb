@@ -1,6 +1,7 @@
 package de.dafuqs.reverb.sound.reverb;
 
 import com.mojang.serialization.*;
+import de.dafuqs.reverb.*;
 import net.fabricmc.fabric.api.event.registry.*;
 import net.minecraft.client.*;
 import net.minecraft.client.sound.*;
@@ -15,7 +16,7 @@ import java.util.function.*;
 public abstract class ReverbEffect {
 
     @SuppressWarnings("unchecked")
-    public static final SimpleRegistry<Codec<? extends ReverbEffect>> REVERB_EFFECT_CODEC = (SimpleRegistry<Codec<? extends ReverbEffect>>) (Object) FabricRegistryBuilder.createSimple(Codec.class, new Identifier("limlib", "limlib_reverb_effect")).attribute(RegistryAttribute.SYNCED).buildAndRegister();
+    public static final SimpleRegistry<Codec<? extends ReverbEffect>> REVERB_EFFECT_CODEC = (SimpleRegistry<Codec<? extends ReverbEffect>>) (Object) FabricRegistryBuilder.createSimple(Codec.class, new Identifier(Reverb.MOD_ID, "reverb_effect")).attribute(RegistryAttribute.SYNCED).buildAndRegister();
     public static final Codec<ReverbEffect> CODEC = REVERB_EFFECT_CODEC.getCodec().dispatchStable(ReverbEffect::getCodec, Function.identity());
 
     public abstract Codec<? extends ReverbEffect> getCodec();
