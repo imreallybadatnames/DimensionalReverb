@@ -14,14 +14,18 @@ import java.util.*;
 @Environment(EnvType.CLIENT)
 public class ReverbFilter {
 
-    public static final Logger LOGGER = LogManager.getLogger("LimLib | Reverb");
+    public static final Logger LOGGER = LogManager.getLogger();
 
     public static int id = -1;
     public static int slot = -1;
 
     public static void update() {
-        id = EXTEfx.alGenEffects();
-        slot = EXTEfx.alGenAuxiliaryEffectSlots();
+        try {
+            id = EXTEfx.alGenEffects();
+            slot = EXTEfx.alGenAuxiliaryEffectSlots();
+        } catch (Throwable t) {
+            LOGGER.log(Level.WARN, "Error updating reverb filter. No audio devices present?");
+        }
     }
 
     public static boolean update(SoundInstance soundInstance, ReverbEffect data) {

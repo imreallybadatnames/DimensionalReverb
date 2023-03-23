@@ -27,9 +27,7 @@ public class MinecraftClientMixin {
             Optional<SoundEffects> soundEffects = Reverb.SOUND_EFFECTS.getOrEmpty(world.getRegistryKey().getValue());
             if (soundEffects.isPresent()) {
                 Optional<MusicSound> musicSound = soundEffects.get().getMusic();
-                if (musicSound.isPresent()) {
-                    ci.setReturnValue(musicSound.get());
-                }
+                musicSound.ifPresent(ci::setReturnValue);
             }
         }
     }
