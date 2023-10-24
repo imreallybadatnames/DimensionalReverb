@@ -13,7 +13,7 @@ public class Reverb implements ModInitializer {
 	public static final String MOD_ID = "reverb";
 	
 	public static final RegistryKey<Registry<SoundEffects>> SOUND_EFFECTS_KEY = RegistryKey.ofRegistry(new Identifier(MOD_ID, "sound_effects"));
-	public static final Registry<SoundEffects> SOUND_EFFECTS = FabricRegistryBuilder.createSimple(SOUND_EFFECTS_KEY).buildAndRegister();
+	public static final Registry<SoundEffects> SOUND_EFFECTS = FabricRegistryBuilder.createSimple(SOUND_EFFECTS_KEY).attribute(RegistryAttribute.SYNCED).buildAndRegister();
 	
 	@Override
 	public void onInitialize() {
