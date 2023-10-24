@@ -10,15 +10,11 @@ import java.util.*;
 
 public class SoundEffects {
 	
-	public static final Codec<SoundEffects> CODEC = RecordCodecBuilder.create((instance) -> {
-		return instance.group(ReverbEffect.CODEC.optionalFieldOf("reverb").stable().forGetter((soundEffects) -> {
-			return soundEffects.reverb;
-		}), DistortionEffect.CODEC.optionalFieldOf("distortion").stable().forGetter((soundEffects) -> {
-			return soundEffects.distortion;
-		}), MusicSound.CODEC.optionalFieldOf("music").stable().forGetter((soundEffects) -> {
-			return soundEffects.music;
-		})).apply(instance, instance.stable(SoundEffects::new));
-	});
+	public static final Codec<SoundEffects> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+			ReverbEffect.CODEC.optionalFieldOf("reverb").stable().forGetter((soundEffects) -> soundEffects.reverb),
+			DistortionEffect.CODEC.optionalFieldOf("distortion").stable().forGetter((soundEffects) -> soundEffects.distortion),
+			MusicSound.CODEC.optionalFieldOf("music").stable().forGetter((soundEffects) -> soundEffects.music)
+	).apply(instance, instance.stable(SoundEffects::new)));
 	
 	private final Optional<ReverbEffect> reverb;
 	private final Optional<DistortionEffect> distortion;

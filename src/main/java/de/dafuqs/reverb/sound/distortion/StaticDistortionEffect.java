@@ -15,21 +15,14 @@ import org.lwjgl.openal.*;
  */
 public class StaticDistortionEffect extends DistortionEffect {
 	
-	public static final Codec<StaticDistortionEffect> CODEC = RecordCodecBuilder.create((instance) -> {
-		return instance.group(Codec.BOOL.optionalFieldOf("enabled", true).stable().forGetter((distortion) -> {
-			return distortion.enabled;
-		}), Codec.floatRange(EXTEfx.AL_DISTORTION_MIN_EDGE, EXTEfx.AL_DISTORTION_MAX_EDGE).optionalFieldOf("edge", EXTEfx.AL_DISTORTION_DEFAULT_EDGE).stable().forGetter((distortion) -> {
-			return distortion.edge;
-		}), Codec.floatRange(EXTEfx.AL_DISTORTION_MIN_GAIN, EXTEfx.AL_DISTORTION_MAX_GAIN).optionalFieldOf("gain", EXTEfx.AL_DISTORTION_DEFAULT_GAIN).stable().forGetter((distortion) -> {
-			return distortion.gain;
-		}), Codec.floatRange(EXTEfx.AL_DISTORTION_MIN_LOWPASS_CUTOFF, EXTEfx.AL_DISTORTION_MAX_LOWPASS_CUTOFF).optionalFieldOf("lowpass_cutoff", EXTEfx.AL_DISTORTION_DEFAULT_LOWPASS_CUTOFF).stable().forGetter((distortion) -> {
-			return distortion.lowpassCutoff;
-		}), Codec.floatRange(EXTEfx.AL_DISTORTION_MIN_EQCENTER, EXTEfx.AL_DISTORTION_MAX_EQCENTER).optionalFieldOf("eq_center", EXTEfx.AL_DISTORTION_DEFAULT_EQCENTER).stable().forGetter((distortion) -> {
-			return distortion.eqCenter;
-		}), Codec.floatRange(EXTEfx.AL_DISTORTION_MIN_EQBANDWIDTH, EXTEfx.AL_DISTORTION_MAX_EQBANDWIDTH).optionalFieldOf("eq_band_width", EXTEfx.AL_DISTORTION_DEFAULT_EQBANDWIDTH).stable().forGetter((distortion) -> {
-			return distortion.eqBandWidth;
-		})).apply(instance, instance.stable(StaticDistortionEffect::new));
-	});
+	public static final Codec<StaticDistortionEffect> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+			Codec.BOOL.optionalFieldOf("enabled", true).stable().forGetter((distortion) -> distortion.enabled),
+			Codec.floatRange(EXTEfx.AL_DISTORTION_MIN_EDGE, EXTEfx.AL_DISTORTION_MAX_EDGE).optionalFieldOf("edge", EXTEfx.AL_DISTORTION_DEFAULT_EDGE).stable().forGetter((distortion) -> distortion.edge),
+			Codec.floatRange(EXTEfx.AL_DISTORTION_MIN_GAIN, EXTEfx.AL_DISTORTION_MAX_GAIN).optionalFieldOf("gain", EXTEfx.AL_DISTORTION_DEFAULT_GAIN).stable().forGetter((distortion) -> distortion.gain),
+			Codec.floatRange(EXTEfx.AL_DISTORTION_MIN_LOWPASS_CUTOFF, EXTEfx.AL_DISTORTION_MAX_LOWPASS_CUTOFF).optionalFieldOf("lowpass_cutoff", EXTEfx.AL_DISTORTION_DEFAULT_LOWPASS_CUTOFF).stable().forGetter((distortion) -> distortion.lowpassCutoff),
+			Codec.floatRange(EXTEfx.AL_DISTORTION_MIN_EQCENTER, EXTEfx.AL_DISTORTION_MAX_EQCENTER).optionalFieldOf("eq_center", EXTEfx.AL_DISTORTION_DEFAULT_EQCENTER).stable().forGetter((distortion) -> distortion.eqCenter),
+			Codec.floatRange(EXTEfx.AL_DISTORTION_MIN_EQBANDWIDTH, EXTEfx.AL_DISTORTION_MAX_EQBANDWIDTH).optionalFieldOf("eq_band_width", EXTEfx.AL_DISTORTION_DEFAULT_EQBANDWIDTH).stable().forGetter((distortion) -> distortion.eqBandWidth)
+	).apply(instance, instance.stable(StaticDistortionEffect::new)));
 	
 	private final boolean enabled;
 	private final float edge;
