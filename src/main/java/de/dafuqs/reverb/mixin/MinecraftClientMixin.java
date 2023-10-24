@@ -14,22 +14,22 @@ import java.util.*;
 
 @Mixin(MinecraftClient.class)
 public class MinecraftClientMixin {
-
-    @Shadow
-    public ClientPlayerEntity player;
-
-    @Shadow
-    public ClientWorld world;
-
-    @Inject(method = "getMusicType", at = @At("HEAD"), cancellable = true)
-    private void reverb$getMusicType(CallbackInfoReturnable<MusicSound> ci) {
-        if (this.player != null) {
-            Optional<SoundEffects> soundEffects = Reverb.SOUND_EFFECTS.getOrEmpty(world.getRegistryKey().getValue());
-            if (soundEffects.isPresent()) {
-                Optional<MusicSound> musicSound = soundEffects.get().getMusic();
-                musicSound.ifPresent(ci::setReturnValue);
-            }
-        }
-    }
-
+	
+	@Shadow
+	public ClientPlayerEntity player;
+	
+	@Shadow
+	public ClientWorld world;
+	
+	@Inject(method = "getMusicType", at = @At("HEAD"), cancellable = true)
+	private void reverb$getMusicType(CallbackInfoReturnable<MusicSound> ci) {
+		if (this.player != null) {
+			Optional<SoundEffects> soundEffects = Reverb.SOUND_EFFECTS.getOrEmpty(world.getRegistryKey().getValue());
+			if (soundEffects.isPresent()) {
+				Optional<MusicSound> musicSound = soundEffects.get().getMusic();
+				musicSound.ifPresent(ci::setReturnValue);
+			}
+		}
+	}
+	
 }
