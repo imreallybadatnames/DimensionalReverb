@@ -4,15 +4,18 @@ import de.dafuqs.reverb.sound.*;
 import de.dafuqs.reverb.sound.distortion.*;
 import de.dafuqs.reverb.sound.reverb.*;
 import net.fabricmc.api.*;
+import net.fabricmc.fabric.api.event.registry.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
+
+import java.util.*;
 
 public class Reverb implements ModInitializer {
 
     public static final String MOD_ID = "reverb";
 
     public static final RegistryKey<Registry<SoundEffects>> SOUND_EFFECTS_KEY = RegistryKey.ofRegistry(new Identifier(MOD_ID, "sound_effects"));
-    public static final Registry<SoundEffects> SOUND_EFFECTS = Registry.create(SOUND_EFFECTS_KEY, registry -> new SoundEffects());
+    public static final Registry<SoundEffects> SOUND_EFFECTS = FabricRegistryBuilder.createSimple(SOUND_EFFECTS_KEY).buildAndRegister();
 
     @Override
     public void onInitialize() {

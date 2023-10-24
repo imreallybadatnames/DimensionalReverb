@@ -5,8 +5,8 @@ import de.dafuqs.reverb.*;
 import net.fabricmc.fabric.api.event.registry.*;
 import net.minecraft.client.*;
 import net.minecraft.client.sound.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
 
 import java.util.function.*;
 
@@ -16,7 +16,7 @@ import java.util.function.*;
 public abstract class DistortionEffect {
 
     @SuppressWarnings("unchecked")
-    public static final SimpleRegistry<Codec<? extends DistortionEffect>> DISTORTION_EFFECT_CODEC = (SimpleRegistry<Codec<? extends DistortionEffect>>) (Object) FabricRegistryBuilder.createSimple(Codec.class, new Identifier(Reverb.MOD_ID, "distortion_effect")).attribute(RegistryAttribute.SYNCED).buildAndRegister();
+    public static final Registry<Codec<? extends DistortionEffect>> DISTORTION_EFFECT_CODEC = (SimpleRegistry<Codec<? extends DistortionEffect>>) (Object) FabricRegistryBuilder.createSimple(Codec.class, new Identifier(Reverb.MOD_ID, "distortion_effect")).attribute(RegistryAttribute.SYNCED).buildAndRegister();
     public static final Codec<DistortionEffect> CODEC = DISTORTION_EFFECT_CODEC.getCodec().dispatchStable(DistortionEffect::getCodec, Function.identity());
 
     public abstract Codec<? extends DistortionEffect> getCodec();

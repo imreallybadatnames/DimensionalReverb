@@ -5,8 +5,8 @@ import de.dafuqs.reverb.*;
 import net.fabricmc.fabric.api.event.registry.*;
 import net.minecraft.client.*;
 import net.minecraft.client.sound.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
 
 import java.util.function.*;
 
