@@ -8,6 +8,7 @@ import net.minecraft.sound.*;
 
 import java.util.*;
 
+@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
 public class SoundEffects {
 	
 	public static final Codec<SoundEffects> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
