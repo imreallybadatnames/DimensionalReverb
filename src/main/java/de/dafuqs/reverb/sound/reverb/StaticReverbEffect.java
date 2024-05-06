@@ -15,7 +15,7 @@ import org.lwjgl.openal.*;
  */
 public class StaticReverbEffect extends ReverbEffect {
 	
-	public static final Codec<StaticReverbEffect> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+	public static final MapCodec<StaticReverbEffect> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
 			Codec.BOOL.optionalFieldOf("enabled", true).stable().forGetter((reverb) -> reverb.enabled),
 			Codec.floatRange(EXTEfx.AL_REVERB_MIN_DENSITY, EXTEfx.AL_REVERB_MAX_DENSITY).optionalFieldOf("density", EXTEfx.AL_REVERB_DEFAULT_DENSITY).stable().forGetter((reverb) -> reverb.density),
 			Codec.floatRange(EXTEfx.AL_REVERB_MIN_DIFFUSION, EXTEfx.AL_REVERB_MAX_DIFFUSION).optionalFieldOf("diffusion", EXTEfx.AL_REVERB_DEFAULT_DIFFUSION).stable().forGetter((reverb) -> reverb.diffusion),
@@ -29,7 +29,7 @@ public class StaticReverbEffect extends ReverbEffect {
 			Codec.floatRange(EXTEfx.AL_REVERB_MIN_REFLECTIONS_DELAY, EXTEfx.AL_REVERB_MAX_REFLECTIONS_DELAY).optionalFieldOf("reflections_delay", EXTEfx.AL_REVERB_DEFAULT_REFLECTIONS_DELAY).stable().forGetter((reverb) -> reverb.reflectionsDelay),
 			Codec.floatRange(EXTEfx.AL_REVERB_MIN_LATE_REVERB_DELAY, EXTEfx.AL_REVERB_MAX_LATE_REVERB_DELAY).optionalFieldOf("late_reverb_delay", EXTEfx.AL_REVERB_DEFAULT_LATE_REVERB_DELAY).stable().forGetter((reverb) -> reverb.lateReverbDelay),
 			Codec.intRange(EXTEfx.AL_REVERB_MIN_DECAY_HFLIMIT, EXTEfx.AL_REVERB_MAX_DECAY_HFLIMIT).optionalFieldOf("decay_hf_limit", EXTEfx.AL_REVERB_DEFAULT_DECAY_HFLIMIT).stable().forGetter((reverb) -> reverb.decayHFLimit)
-	).apply(instance, instance.stable(StaticReverbEffect::new)));
+	).apply(instance, StaticReverbEffect::new));
 	
 	private final boolean enabled;
 	private final float density;
@@ -62,7 +62,7 @@ public class StaticReverbEffect extends ReverbEffect {
 	}
 	
 	@Override
-	public Codec<? extends ReverbEffect> getCodec() {
+	public MapCodec<? extends ReverbEffect> getCodec() {
 		return CODEC;
 	}
 	
